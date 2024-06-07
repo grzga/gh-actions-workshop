@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-      - uses: actions/install/action
+      - uses: ./.github/actions/install
       - run: npm run prettier
       - run: npm run typecheck
       - run: npm run test
@@ -42,7 +42,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - uses: actions/install/action
+      - uses: ./.github/actions/install
       - name: Install Playwright Browsers
         run:
           npx playwright install ${{ matrix.browser }}
