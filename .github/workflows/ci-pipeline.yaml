@@ -1,0 +1,21 @@
+name: ci-workflow
+on:
+  - push
+  - workflow_dispatch
+
+jobs:
+  ci-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: |
+          npm ci
+          npm run prettier
+          npm run typecheck
+          npm run test
+          npm run build
