@@ -35,7 +35,7 @@ jobs:
       - id: page_url
         run: echo "page_url=${{ steps.deploy-pages.outputs.page_url }}" >> "$GITHUB_OUTPUT"
     outputs:
-      page-url: ${{ steps.page_url.outputs.test }}
+      page-url: ${{ steps.deploy-pages.outputs.page_url }}
   smoke-test:
     needs: cd-pipeline
     runs-on: ubuntu-latest
@@ -60,7 +60,7 @@ jobs:
           npx playwright test --project ${{ matrix.browser }}
         env:
           PLAYWRIGHT_BASE_URL:
-            ${{ needs.cd-pipeline.outputs.output1.page_url }}
+            ${{ needs.cd-pipeline.outputs.page-url }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
