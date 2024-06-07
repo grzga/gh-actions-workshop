@@ -33,7 +33,7 @@ jobs:
         uses: actions/deploy-pages@v4
       - run: echo "${{ steps.deploy-pages.outputs.page_url }}"
       - id: page_url
-        run: echo "${{ steps.deploy-pages.outputs.page_url }}" >> "$GITHUB_OUTPUT"
+        run: echo "page_url=${{ steps.deploy-pages.outputs.page_url }}" >> "$GITHUB_OUTPUT"
     outputs:
       page-url: ${{ steps.page_url.outputs.test }}
   smoke-test:
@@ -60,7 +60,7 @@ jobs:
           npx playwright test --project ${{ matrix.browser }}
         env:
           PLAYWRIGHT_BASE_URL:
-            https://grzga.github.io${{ needs.cd-pipeline.outputs.output1 }}
+            ${{ needs.cd-pipeline.outputs.output1.page_url }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
