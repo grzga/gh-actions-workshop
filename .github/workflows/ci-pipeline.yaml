@@ -31,8 +31,8 @@ jobs:
     steps:
       - id: deploy-pages
         uses: actions/deploy-pages@v4
-      - run: echo "${{ steps.deployment.outputs.page_url }}"
-      - run: echo "${{ steps.deployment.outputs.page_url }}" >> "$GITHUB_OUTPUT"
+      - run: echo "${{ steps.deploy-pages.outputs.page_url }}"
+      - run: echo "${{ steps.deploy-pages.outputs.page_url }}" >> "$GITHUB_OUTPUT"
   smoke-test:
     needs: cd-pipeline
     runs-on: ubuntu-latest
