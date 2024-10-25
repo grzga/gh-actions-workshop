@@ -41,4 +41,6 @@ jobs:
       - name: Hello World Two
         id: hello2
         uses: ./.github/actions/simple-action
+        with:
+          who-to-greet: 'MEEEE'
       - run: echo "The time was ${{ steps.hello2.outputs.time }}"
