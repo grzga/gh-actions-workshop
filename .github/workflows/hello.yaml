@@ -33,3 +33,12 @@ jobs:
           ls ${{ github.workspace }}
 
       - run: echo "This job's status is ${{ job.status }}."
+
+      - name: Hello World One
+        id: hello1
+        uses: ./.github/actions/simple-action
+      - run: echo "The time was ${{ steps.hello1.outputs.time }}"
+      - name: Hello World Two
+        id: hello2
+        uses: ./.github/actions/simple-action
+      - run: echo "The time was ${{ steps.hello2.outputs.time }}"
