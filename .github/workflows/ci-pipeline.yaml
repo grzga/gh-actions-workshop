@@ -40,7 +40,7 @@ jobs:
     timeout-minutes: 3
     strategy:
       matrix:
-        browser: [firefox, chromium]
+        browser: [ firefox, chromium ]
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -49,11 +49,11 @@ jobs:
         run:
           npx playwright install ${{ matrix.browser }}
       - name: Run Playwright tests
-        run:
+        run: |
+          echo $PLAYWRIGHT_BASE_URL
           npx playwright test --project ${{ matrix.browser }}
         env:
-          PLAYWRIGHT_BASE_URL:
-            ${{ needs.cd-pipeline.outputs.page-url }}
+          PLAYWRIGHT_BASE_URL: ${{ needs.cd-pipeline.outputs.page-url }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
