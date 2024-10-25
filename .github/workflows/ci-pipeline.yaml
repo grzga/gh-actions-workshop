@@ -53,7 +53,7 @@ jobs:
           echo $PLAYWRIGHT_BASE_DOMAIN
           npx playwright test --project ${{ matrix.browser }}
         env:
-          PLAYWRIGHT_BASE_URL: ${{ needs.cd-pipeline.outputs.page-url }}
+          PLAYWRIGHT_BASE_DOMAIN: ${{ needs.cd-pipeline.outputs.page-url }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
